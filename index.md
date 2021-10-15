@@ -67,5 +67,5 @@
 学士学位英语语言与文学
  -
  查看徐晓光的完整档案
-----------
-[登录领英，解锁完整档案](https://www.linkedin.com/signup/public-profile-join?vieweeVanityName=brightonxu&trk=public_profile_bottom-cta-banner)
+-
+登录领英[解锁完整档案](https://www.linkedin.com/signup/public-profile-join?vieweeVanityName=brightonxu&trk=public_profile_bottom-cta-banner)
