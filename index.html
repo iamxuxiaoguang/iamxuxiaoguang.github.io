@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brighton Xu | Digital Marketing & E-commerce</title>
+  <style>
+    :root{
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --line: rgba(255,255,255,.12);
+      --brand: #7c5cff;      /* Shopify-ish purple vibe */
+      --brand2:#16e6a3;      /* commerce green accent  */
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --max: 1120px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 500px at 20% 0%, rgba(124,92,255,.22), transparent 60%),
+        radial-gradient(900px 420px at 85% 10%, rgba(22,230,163,.18), transparent 55%),
+        radial-gradient(900px 600px at 50% 100%, rgba(124,92,255,.10), transparent 60%),
+        var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 80px}
+    header{
+      position:sticky; top:0; backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(11,16,32,.92), rgba(11,16,32,.55));
+      border-bottom:1px solid var(--line);
+      z-index:10;
+    }
+    .nav{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(124,92,255,1), rgba(22,230,163,1));
+      box-shadow: 0 10px 24px rgba(124,92,255,.25);
+      position:relative;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:8px;
+      border-radius:10px;
+      background: rgba(11,16,32,.65);
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .nav-right{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .pill{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:8px 12px; border-radius:999px;
+      font-size:13px; color:var(--muted);
+      display:flex; align-items:center; gap:8px;
+    }
+    .btn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      padding:9px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:13px;
+      transition:.2s;
+    }
+    .btn:hover{background: rgba(255,255,255,.10)}
+    .btn.primary{
+      border-color: rgba(124,92,255,.55);
+      background: linear-gradient(135deg, rgba(124,92,255,.28), rgba(22,230,163,.14));
+    }
+
+    .hero{
+      padding:44px 0 26px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){ .hero{grid-template-columns:1fr; padding-top:30px;} }
+
+    .card{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-main{padding:28px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      color: var(--muted);
+      font-size:13px;
+    }
+    .h1{
+      margin:14px 0 10px;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height:1.08;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      max-width: 62ch;
+    }
+    .cta{margin-top:18px; display:flex; gap:10px; flex-wrap:wrap}
+    .cta a.btn{display:inline-flex; align-items:center; gap:8px}
+    .hero-side{padding:18px}
+    .mini{
+      padding:16px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    .mini h3{margin:2px 0 10px; font-size:14px; color: var(--muted); font-weight:700; letter-spacing:.2px}
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .stat{
+      padding:12px;
+      border-radius:14px;
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .stat .t{font-size:12px; color: var(--muted)}
+    .stat .v{margin-top:6px; font-size:14px; font-weight:700}
+    .icon{
+      width:20px; height:20px; display:inline-block;
+      vertical-align: -4px;
+    }
+
+    section{margin-top:18px}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      margin: 22px 0 10px;
+      gap:10px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .section-title p{margin:0; color:var(--muted); font-size:13px}
+    .tiles{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .tile{
+      grid-column: span 4;
+      padding:16px;
+      border-radius: 18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      transition: .2s;
+    }
+    .tile:hover{transform: translateY(-2px); background: rgba(255,255,255,.06)}
+    @media (max-width: 980px){ .tile{grid-column: span 6;} }
+    @media (max-width: 640px){ .tile{grid-column: span 12;} }
+    .tile h3{margin:10px 0 6px; font-size:15px}
+    .tile p{margin:0; color:var(--muted); font-size:13px; line-height:1.6}
+    .tagrow{margin-top:10px; display:flex; gap:8px; flex-wrap:wrap}
+    .tag{
+      font-size:12px; color: rgba(255,255,255,.72);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      padding:6px 10px; border-radius:999px;
+    }
+
+    .footer{
+      margin-top:26px;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color: var(--muted);
+      font-size:13px;
+    }
+    .links{display:flex; gap:10px; flex-wrap:wrap}
+    .links a{padding:8px 10px; border-radius:999px; border:1px solid var(--line); background: rgba(255,255,255,.04)}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div style="font-size:14px">Brighton Xu</div>
+        <div data-i18n="nav.role" style="font-size:12px;color:var(--muted)">Digital Marketing · E-commerce Growth</div>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <div class="pill" title="Location">
+        <!-- pin -->
+        <svg class="icon" viewBox="0 0 24 24" fill="none">
+          <path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" stroke="rgba(255,255,255,.75)" stroke-width="1.6"/>
+          <circle cx="12" cy="10" r="2.5" stroke="rgba(255,255,255,.75)" stroke-width="1.6"/>
+        </svg>
+        <span data-i18n="nav.location">Shanghai</span>
+      </div>
+
+      <button id="langBtn" class="btn primary" type="button" aria-label="Switch language">
+        <span data-i18n="nav.langBtn">中文 / EN</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="card hero-main">
+      <div class="kicker">
+        <!-- rocket -->
+        <svg class="icon" viewBox="0 0 24 24" fill="none">
+          <path d="M14 3c3.5 1 6 4.2 7 7-2.5 2-6.7 2.2-9 0-2.2-2.3-2-6.5 0-9Z" stroke="rgba(255,255,255,.75)" stroke-width="1.6" />
+          <path d="M10 14c-2 2-4 2-7 3 1-3 1-5 3-7" stroke="rgba(255,255,255,.75)" stroke-width="1.6"/>
+          <path d="M11 13l-3-3" stroke="rgba(255,255,255,.75)" stroke-width="1.6"/>
+          <path d="M15 9l-1 1" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <span data-i18n="hero.kicker">E-commerce & Performance Marketing</span>
+      </div>
+
+      <h1 class="h1" data-i18n="hero.title">
+        用数据与创意驱动增长，打造可持续的电商营销体系
+      </h1>
+
+      <p class="sub" data-i18n="hero.subtitle">
+        具备市场分析、Campaign 策划与执行、预算预测与项目管理能力；覆盖站点运营、SEO/GEO、付费投放（Meta/Google）、KOL/联盟营销与品牌公关，擅长将站内体验与站外获客打通，提升转化与ROI。
+      </p>
+
+      <div class="cta">
+        <a class="btn primary" href="mailto:Brighton_Xu@qq.com">
+          <!-- mail -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M4 7h16v10H4V7Z" stroke="rgba(255,255,255,.8)" stroke-width="1.6"/>
+            <path d="M4.5 7.5 12 13l7.5-5.5" stroke="rgba(255,255,255,.8)" stroke-width="1.6"/>
+          </svg>
+          <span data-i18n="hero.ctaEmail">邮箱联系</span>
+        </a>
+
+        <a class="btn" href="https://www.linkedin.com/in/brightonxu" target="_blank" rel="noreferrer">
+          <!-- link -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M10 13a5 5 0 0 1 0-7l1.2-1.2a5 5 0 0 1 7 7L17 13" stroke="rgba(255,255,255,.8)" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M14 11a5 5 0 0 1 0 7l-1.2 1.2a5 5 0 1 1-7-7L7 11" stroke="rgba(255,255,255,.8)" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span data-i18n="hero.ctaLinkedIn">LinkedIn</span>
+        </a>
+      </div>
+    </div>
+
+    <aside class="card hero-side">
+      <div class="mini">
+        <h3 data-i18n="side.title">能力概览</h3>
+        <div class="grid2">
+          <div class="stat">
+            <div class="t" data-i18n="side.s1t">方向</div>
+            <div class="v" data-i18n="side.s1v">电商增长 · 数字营销</div>
+          </div>
+          <div class="stat">
+            <div class="t" data-i18n="side.s2t">投放</div>
+            <div class="v" data-i18n="side.s2v">Meta / Google Ads</div>
+          </div>
+          <div class="stat">
+            <div class="t" data-i18n="side.s3t">站内</div>
+            <div class="v" data-i18n="side.s3v">转化优化 · 体验优化</div>
+          </div>
+          <div class="stat">
+            <div class="t" data-i18n="side.s4t">语言</div>
+            <div class="v" data-i18n="side.s4v">中文 / English</div>
+          </div>
+        </div>
+        <div class="tagrow" aria-label="certifications">
+          <span class="tag">Google Ads Shopping</span>
+          <span class="tag">Google Ads Display</span>
+          <span class="tag" data-i18n="side.certPm">Project Management</span>
+        </div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div class="mini">
+        <h3 data-i18n="side.stackTitle">关注的增长链路</h3>
+        <div class="tagrow">
+          <span class="tag" data-i18n="side.stack1">站点结构与结账流程</span>
+          <span class="tag" data-i18n="side.stack2">商品信息与Listing</span>
+          <span class="tag" data-i18n="side.stack3">SEO/GEO与内容营销</span>
+          <span class="tag" data-i18n="side.stack4">付费投放与再营销</span>
+          <span class="tag" data-i18n="side.stack5">KOL与联盟营销</span>
+          <span class="tag" data-i18n="side.stack6">口碑与PR</span>
+          <span class="tag" data-i18n="side.stack7">用户反馈与服务流程</span>
+          <span class="tag" data-i18n="side.stack8">多语言/全球化适配</span>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2 data-i18n="sec1.title">我能解决什么问题</h2>
+      <p data-i18n="sec1.note">能力永不止步</p>
+    </div>
+
+    <div class="tiles">
+      <div class="tile">
+        <div class="kicker" style="border-radius:14px">
+          <!-- chart -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M4 19V5" stroke="rgba(255,255,255,.75)" stroke-width="1.6"/>
+            <path d="M4 19h16" stroke="rgba(255,255,255,.75)" stroke-width="1.6"/>
+            <path d="M7 15l4-4 3 3 5-6" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span data-i18n="sec1.c1k">Strategy</span>
+        </div>
+        <h3 data-i18n="sec1.c1t">市场分析与增长策略</h3>
+        <p data-i18n="sec1.c1p">基于用户洞察与竞品分析，制定可执行的推广路径与目标拆解，形成从拉新到转化的闭环策略。</p>
+        <div class="tagrow">
+          <span class="tag" data-i18n="tags.insight">用户洞察</span>
+          <span class="tag" data-i18n="tags.competitor">竞品分析</span>
+          <span class="tag" data-i18n="tags.plan">目标与节奏</span>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="kicker" style="border-radius:14px">
+          <!-- megaphone -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M4 12v-2l12-5v14L4 14v-2Z" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M16 7.5c2 .2 4 1.6 4 4.5s-2 4.3-4 4.5" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M6 14l1.2 5H10l-1.2-6" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+          <span data-i18n="sec1.c2k">Performance</span>
+        </div>
+        <h3 data-i18n="sec1.c2t">付费投放与预算管理</h3>
+        <p data-i18n="sec1.c2p">管理并优化 Meta / Google Ads 投放，结合数据监测与迭代，持续提升ROI与转化效率；支持预算预测与分配。</p>
+        <div class="tagrow">
+          <span class="tag">Meta Ads</span>
+          <span class="tag">Google Ads</span>
+          <span class="tag" data-i18n="tags.roi">ROI优化</span>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="kicker" style="border-radius:14px">
+          <!-- cart -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M7 6h15l-2 8H8L7 6Z" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M7 6 6 3H2" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linecap="round"/>
+            <circle cx="9" cy="19" r="1.6" stroke="rgba(255,255,255,.75)" stroke-width="1.6"/>
+            <circle cx="18" cy="19" r="1.6" stroke="rgba(255,255,255,.75)" stroke-width="1.6"/>
+          </svg>
+          <span data-i18n="sec1.c3k">Commerce</span>
+        </div>
+        <h3 data-i18n="sec1.c3t">站点运营与转化优化</h3>
+        <p data-i18n="sec1.c3p">从商品呈现、用户路径到结账流程优化，定位影响转化的关键节点，推进功能迭代与体验升级。</p>
+        <div class="tagrow">
+          <span class="tag" data-i18n="tags.ux">UX/转化</span>
+          <span class="tag" data-i18n="tags.checkout">Checkout</span>
+          <span class="tag" data-i18n="tags.listing">Listing优化</span>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="kicker" style="border-radius:14px">
+          <!-- search -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="6.5" stroke="rgba(255,255,255,.75)" stroke-width="1.6"/>
+            <path d="M16.5 16.5 21 21" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span data-i18n="sec1.c4k">Organic</span>
+        </div>
+        <h3 data-i18n="sec1.c4t">SEO/GEO与内容营销</h3>
+        <p data-i18n="sec1.c4p">开展站点审计、关键词研究与内容策略；协同技术优化页面结构与Meta信息，提升自然流量与站点权重。</p>
+        <div class="tagrow">
+          <span class="tag" data-i18n="tags.audit">Site Audit</span>
+          <span class="tag" data-i18n="tags.keyword">关键词</span>
+          <span class="tag" data-i18n="tags.content">内容策略</span>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="kicker" style="border-radius:14px">
+          <!-- users -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M16 11a4 4 0 1 0-8 0 4 4 0 0 0 8 0Z" stroke="rgba(255,255,255,.75)" stroke-width="1.6"/>
+            <path d="M4 21c1.8-4 14.2-4 16 0" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span data-i18n="sec1.c5k">Partners</span>
+        </div>
+        <h3 data-i18n="sec1.c5t">KOL / 联盟营销与协作</h3>
+        <p data-i18n="sec1.c5p">与内容创作者和合作伙伴协同，提升产品曝光与转化质量；通过联盟项目引入更可持续的增量流量。</p>
+        <div class="tagrow">
+          <span class="tag" data-i18n="tags.influencer">Influencer</span>
+          <span class="tag" data-i18n="tags.affiliate">Affiliate</span>
+          <span class="tag" data-i18n="tags.collab">跨团队协作</span>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="kicker" style="border-radius:14px">
+          <!-- shield -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3 20 7v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M8 12l2.5 2.5L16 9" stroke="rgba(255,255,255,.75)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span data-i18n="sec1.c6k">Brand</span>
+        </div>
+        <h3 data-i18n="sec1.c6t">PR、口碑与用户体验闭环</h3>
+        <p data-i18n="sec1.c6p">通过新闻稿、活动与社媒舆情监测，强化品牌信任；重视用户反馈与服务流程优化，提升复购与忠诚度。</p>
+        <div class="tagrow">
+          <span class="tag" data-i18n="tags.pr">PR</span>
+          <span class="tag" data-i18n="tags.community">社群/口碑</span>
+          <span class="tag" data-i18n="tags.cs">服务流程</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2 data-i18n="sec2.title">工具与方法</h2>
+      <p data-i18n="sec2.note">把复杂问题拆成可执行动作</p>
+    </div>
+
+    <div class="tiles">
+      <div class="tile" style="grid-column: span 6;">
+        <h3 data-i18n="sec2.m1t">增长工作流（示例）</h3>
+        <p data-i18n="sec2.m1p">
+          诊断：流量结构/用户路径 → 假设：瓶颈与机会点 → 实验：素材、受众、落地页、结账流程 →
+          评估：指标看板与复盘 → 扩大：放量与标准化。
+        </p>
+        <div class="tagrow">
+          <span class="tag" data-i18n="tags.funnel">Funnel</span>
+          <span class="tag" data-i18n="tags.experiment">实验迭代</span>
+          <span class="tag" data-i18n="tags.retrospective">复盘</span>
+        </div>
+      </div>
+
+      <div class="tile" style="grid-column: span 6;">
+        <h3 data-i18n="sec2.m2t">项目与协作</h3>
+        <p data-i18n="sec2.m2p">
+          将目标转化为里程碑与交付清单；跨团队推动（市场/设计/研发/客服）并跟踪风险、成本与进度，确保落地质量。
+        </p>
+        <div class="tagrow">
+          <span class="tag" data-i18n="tags.pm">Project Management</span>
+          <span class="tag" data-i18n="tags.timeline">里程碑</span>
+          <span class="tag" data-i18n="tags.qa">质量与风险</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>
+      <span data-i18n="footer.line1">对电商增长、品牌出海与数字营销合作保持开放。</span>
+      <span style="display:block; margin-top:6px" data-i18n="footer.line2">联系：Brighton_Xu@qq.com</span>
+    </div>
+    <div class="links">
+      <a href="mailto:Brighton_Xu@qq.com" data-i18n="footer.email">Email</a>
+      <a href="https://www.linkedin.com/in/brightonxu" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+  </div>
+</main>
+
+<script>
+  const dict = {
+    zh: {
+      "nav.role": "数字营销 · 电商增长",
+      "nav.location": "上海",
+      "nav.langBtn": "中文 / EN",
+
+      "hero.kicker": "电商增长与效果营销",
+      "hero.title": "用数据与创意驱动增长，打造可持续的电商营销体系",
+      "hero.subtitle": "具备市场分析、Campaign 策划与执行、预算预测与项目管理能力；覆盖站点运营、SEO/GEO、付费投放（Meta/Google）、KOL/联盟营销与品牌公关，擅长将站内体验与站外获客打通，提升转化与ROI。",
+      "hero.ctaEmail": "邮箱联系",
+      "hero.ctaLinkedIn": "LinkedIn",
+
+      "side.title": "能力概览",
+      "side.s1t": "方向",
+      "side.s1v": "电商增长 · 数字营销",
+      "side.s2t": "投放",
+      "side.s2v": "Meta / Google Ads",
+      "side.s3t": "站内",
+      "side.s3v": "转化优化 · 体验优化",
+      "side.s4t": "语言",
+      "side.s4v": "中文 / English",
+      "side.certPm": "项目管理",
+      "side.stackTitle": "关注的增长链路",
+      "side.stack1": "站点结构与结账流程",
+      "side.stack2": "商品信息与Listing",
+      "side.stack3": "SEO/GEO与内容营销",
+      "side.stack4": "付费投放与再营销",
+      "side.stack5": "KOL与联盟营销",
+      "side.stack6": "口碑与PR",
+      "side.stack7": "用户反馈与服务流程",
+      "side.stack8": "多语言/全球化适配",
+
+      "sec1.title": "我能解决什么问题",
+      "sec1.note": "不堆砌经历，用能力说话",
+      "sec1.c1k": "策略",
+      "sec1.c1t": "市场分析与增长策略",
+      "sec1.c1p": "基于用户洞察与竞品分析，制定可执行的推广路径与目标拆解，形成从拉新到转化的闭环策略。",
+      "sec1.c2k": "投放",
+      "sec1.c2t": "付费投放与预算管理",
+      "sec1.c2p": "管理并优化 Meta / Google Ads 投放，结合数据监测与迭代，持续提升ROI与转化效率；支持预算预测与分配。",
+      "sec1.c3k": "电商",
+      "sec1.c3t": "站点运营与转化优化",
+      "sec1.c3p": "从商品呈现、用户路径到结账流程优化，定位影响转化的关键节点，推进功能迭代与体验升级。",
+      "sec1.c4k": "自然增长",
+      "sec1.c4t": "SEO/GEO与内容营销",
+      "sec1.c4p": "开展站点审计、关键词研究与内容策略；协同技术优化页面结构与Meta信息，提升自然流量与站点权重。",
+      "sec1.c5k": "合作",
+      "sec1.c5t": "KOL / 联盟营销与协作",
+      "sec1.c5p": "与内容创作者和合作伙伴协同，提升产品曝光与转化质量；通过联盟项目引入更可持续的增量流量。",
+      "sec1.c6k": "品牌",
+      "sec1.c6t": "PR、口碑与用户体验闭环",
+      "sec1.c6p": "通过新闻稿、活动与社媒舆情监测，强化品牌信任；重视用户反馈与服务流程优化，提升复购与忠诚度。",
+
+      "sec2.title": "工具与方法",
+      "sec2.note": "把复杂问题拆成可执行动作",
+      "sec2.m1t": "增长工作流（示例）",
+      "sec2.m1p": "诊断：流量结构/用户路径 → 假设：瓶颈与机会点 → 实验：素材、受众、落地页、结账流程 → 评估：指标看板与复盘 → 扩大：放量与标准化。",
+      "sec2.m2t": "项目与协作",
+      "sec2.m2p": "将目标转化为里程碑与交付清单；跨团队推动（市场/设计/研发/客服）并跟踪风险、成本与进度，确保落地质量。",
+
+      "tags.insight":"用户洞察",
+      "tags.competitor":"竞品分析",
+      "tags.plan":"目标与节奏",
+      "tags.roi":"ROI优化",
+      "tags.ux":"UX/转化",
+      "tags.checkout":"结账流程",
+      "tags.listing":"Listing优化",
+      "tags.audit":"站点审计",
+      "tags.keyword":"关键词研究",
+      "tags.content":"内容策略",
+      "tags.influencer":"KOL合作",
+      "tags.affiliate":"联盟营销",
+      "tags.collab":"协作推进",
+      "tags.pr":"公关传播",
+      "tags.community":"舆情/社媒",
+      "tags.cs":"客服体验",
+      "tags.funnel":"漏斗",
+      "tags.experiment":"实验迭代",
+      "tags.retrospective":"复盘",
+      "tags.pm":"项目管理",
+      "tags.timeline":"里程碑",
+      "tags.qa":"风险与质量",
+
+      "footer.line1":"对电商增长、品牌出海与数字营销合作保持开放。",
+      "footer.line2":"联系：Brighton_Xu@qq.com",
+      "footer.email":"邮箱"
+    },
+
+    en: {
+      "nav.role": "Digital Marketing · E-commerce Growth",
+      "nav.location": "Shanghai",
+      "nav.langBtn": "EN / 中文",
+
+      "hero.kicker": "E-commerce Growth & Performance Marketing",
+      "hero.title": "Turning data + creativity into scalable e-commerce growth",
+      "hero.subtitle": "Skilled in market analysis, campaign planning/execution, budget forecasting, and project management. Strong coverage across website operations, SEO/GEO, paid acquisition (Meta/Google Ads), influencer/affiliate partnerships, and PR—connecting on-site experience with off-site acquisition to improve conversion and ROI.",
+      "hero.ctaEmail": "Email",
+      "hero.ctaLinkedIn": "LinkedIn",
+
+      "side.title": "Snapshot",
+      "side.s1t": "Focus",
+      "side.s1v": "E-commerce growth · Digital marketing",
+      "side.s2t": "Paid media",
+      "side.s2v": "Meta / Google Ads",
+      "side.s3t": "On-site",
+      "side.s3v": "CRO · UX optimization",
+      "side.s4t": "Languages",
+      "side.s4v": "Chinese / English",
+      "side.certPm": "Project Management",
+      "side.stackTitle": "Growth levers I care about",
+      "side.stack1": "Site architecture & checkout flow",
+      "side.stack2": "Merchandising & product listings",
+      "side.stack3": "SEO/GEO & content marketing",
+      "side.stack4": "Paid acquisition & retargeting",
+      "side.stack5": "Influencer & affiliate programs",
+      "side.stack6": "PR & reputation",
+      "side.stack7": "User feedback & support workflows",
+      "side.stack8": "Localization & global readiness",
+
+      "sec1.title": "What I help with",
+      "sec1.note": "Capability knows no bounds.",
+      "sec1.c1k": "Strategy",
+      "sec1.c1t": "Market insights & growth strategy",
+      "sec1.c1p": "Build actionable plans from customer insights and competitor analysis—turning goals into a full-funnel roadmap from acquisition to conversion.",
+      "sec1.c2k": "Performance",
+      "sec1.c2t": "Paid acquisition & budget planning",
+      "sec1.c2p": "Manage and optimize Meta/Google Ads with continuous measurement and iteration—improving conversion efficiency and ROI, supported by budget forecasting and allocation.",
+      "sec1.c3k": "Commerce",
+      "sec1.c3t": "Website ops & conversion optimization",
+      "sec1.c3p": "Improve product presentation, user paths, and checkout flow—identifying conversion bottlenecks and driving iterations with measurable impact.",
+      "sec1.c4k": "Organic",
+      "sec1.c4t": "SEO/GEO & content marketing",
+      "sec1.c4p": "Run site audits, keyword research, and content strategy; partner with technical teams to improve structure and meta signals to grow organic traffic and authority.",
+      "sec1.c5k": "Partners",
+      "sec1.c5t": "Influencer / affiliate growth",
+      "sec1.c5p": "Collaborate with creators and partners to increase visibility and conversion quality; build affiliate programs to bring sustainable incremental traffic.",
+      "sec1.c6k": "Brand",
+      "sec1.c6t": "PR, reputation & experience loop",
+      "sec1.c6p": "Strengthen trust via PR and social sentiment monitoring; close the loop with user feedback and support workflow improvements to increase loyalty and repeat purchase.",
+
+      "sec2.title": "Tools & methods",
+      "sec2.note": "Make complex problems executable",
+      "sec2.m1t": "A practical growth workflow (example)",
+      "sec2.m1p": "Diagnose: traffic mix & user paths → Hypothesize: bottlenecks & opportunities → Experiment: creatives, audiences, landing pages, checkout → Evaluate: dashboards & retros → Scale: standardize and expand what works.",
+      "sec2.m2t": "Delivery & collaboration",
+      "sec2.m2p": "Translate goals into milestones and deliverables; align cross-functional teams (marketing/design/dev/support) while tracking risks, cost, and timeline to ensure high-quality execution.",
+
+      "tags.insight":"Customer insights",
+      "tags.competitor":"Competitive analysis",
+      "tags.plan":"Goals & cadence",
+      "tags.roi":"ROI optimization",
+      "tags.ux":"UX/CRO",
+      "tags.checkout":"Checkout",
+      "tags.listing":"Listing optimization",
+      "tags.audit":"Site audit",
+      "tags.keyword":"Keyword research",
+      "tags.content":"Content strategy",
+      "tags.influencer":"Influencers",
+      "tags.affiliate":"Affiliates",
+      "tags.collab":"Collaboration",
+      "tags.pr":"PR",
+      "tags.community":"Social listening",
+      "tags.cs":"Support workflow",
+      "tags.funnel":"Funnel",
+      "tags.experiment":"Experimentation",
+      "tags.retrospective":"Retros",
+      "tags.pm":"Project management",
+      "tags.timeline":"Milestones",
+      "tags.qa":"Risk & quality",
+
+      "footer.line1":"Open to collaborations in e-commerce growth, global marketing, and performance.",
+      "footer.line2":"Reach me: Brighton_Xu@qq.com",
+      "footer.email":"Email"
+    }
+  };
+
+  let lang = "en";
+  const apply = () => {
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const key = el.getAttribute("data-i18n");
+      if(dict[lang][key]) el.textContent = dict[lang][key];
+    });
+  };
+
+  document.getElementById("langBtn").addEventListener("click", ()=>{
+    lang = (lang === "zh") ? "en" : "zh";
+    apply();
+  });
+
+  apply();
+</script>
+</body>
+</html>
